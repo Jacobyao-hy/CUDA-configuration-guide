@@ -1,0 +1,32 @@
+进入服务器配置流程：
+例子：服务器：A100，cuda环境：10.2
+大多数实验都需要运行在虚拟环境中
+首先配置虚拟环境：
+(1)下载并安装Miniconda或Anaconda
+# 以 Miniconda 为例，下载并安装
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+//Miniconda 是一个更轻量级的选择，它提供了 Conda 的核心功能但不包括 Anaconda 发行版中预装的大量 Python 包
+(2)创建Conda环境
+# 创建一个名为 gpu_env 的新环境，安装 Python 3.11（SAMMO要求3.11）
+conda create --name gpu_env python=3.11
+(3)激活Conda环境
+conda activate gpu_env
+这一步可能会产生问题：Your shell has not been properly configured to use 'conda activate'.
+问题解决：初始化conda即可；
+# 为 Bash 初始化 Conda
+conda init bash
+source ~/.bashrc  # 如果你使用的是 bash
+##判断shell名称方法：
+echo $SHELL
+注意：在初始化conda后，需要正确退出环境，才可以生效
+source activate
+conda deactivate
+(4)安装对应的pytorch
+pip install torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cu113
+完成安装后，可以进入到python中验证：
+import torch
+
+# 检查 PyTorch 是否安装成功
+print(torch.__version__)
+到此，服务器初始配置完成
