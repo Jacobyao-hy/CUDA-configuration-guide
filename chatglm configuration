@@ -1,0 +1,7 @@
+chatglm configuration
+Q: unable to locate git-lfs
+A: 需要配置国内的软件源文件（中科大/清华）
+   而后执行：
+   sudo apt update
+   sudo apt install git-lfs
+
